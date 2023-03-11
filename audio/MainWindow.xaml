@@ -1,4 +1,5 @@
 ﻿<Window x:Class="audio.MainWindow"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -16,20 +17,56 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="0.35*"/>
+            <RowDefinition Height="0.5*"/>
             <RowDefinition Height="3*"/>
             <RowDefinition Height="0.5*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Button Content="выбор папки с музыкой" Grid.ColumnSpan="6" HorizontalAlignment="Stretch" Margin="10,5,10,5" VerticalAlignment="Stretch" Click="Button_Click"/>
-        <ListBox x:Name="listBox" Grid.ColumnSpan="6" Grid.Row="1" Margin="10,5,10,5" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
-        <MediaElement x:Name="mediaPlayer" LoadedBehavior="Manual" MediaOpened="mediaPlayer_MediaOpened"/>
+        <ListBox x:Name="listBox" Grid.ColumnSpan="6" Grid.Row="1" Margin="10,5,10,5" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" SelectionChanged="listBox_SelectionChanged"/>
+        <MediaElement x:Name="mediaPlayer" LoadedBehavior="Manual" MediaOpened="mediaPlayer_MediaOpened" MediaEnded="mediaPlayer_MediaEnded"/>
         <Slider x:Name="slider" Grid.ColumnSpan="6" HorizontalAlignment="Stretch" Margin="10,5,10,5" Grid.Row="2" VerticalAlignment="Top" ValueChanged="Slider_ValueChanged"/>
-        <Button x:Name="previous" Content="previous" HorizontalAlignment="Stretch" Margin="10,5,10,5" Grid.Row="3" VerticalAlignment="Stretch" Click="previous_Click"/>
-        <Button Content="play/stop" HorizontalAlignment="Stretch" Margin="10,5,10,5" Grid.Row="3" Grid.Column="1" VerticalAlignment="Stretch" Click="Button_Click_1"/>
-        <Button x:Name="next" Content="next" HorizontalAlignment="Stretch" Margin="10,5,10,5" Grid.Row="3" Grid.Column="2" VerticalAlignment="Stretch" Click="next_Click"/>
-        <Button x:Name="repeat" Content="repeat" HorizontalAlignment="Stretch" Margin="10,5,10,5" Grid.Row="3" Grid.Column="3" VerticalAlignment="Stretch" Click="repeat_Click"/>
-        <Button x:Name="shuffle" Content="shuffle" HorizontalAlignment="Stretch" Margin="10,5,10,5" Grid.Row="3" Grid.Column="4" VerticalAlignment="Stretch" Click="shuffle_Click"/>
         <TextBlock x:Name="mediaPlayerTimer" HorizontalAlignment="Left" Padding="10,0" Grid.Row="2" Text="TextBlock" TextWrapping="Wrap" VerticalAlignment="Bottom"/>
+        <TextBlock x:Name="timeLeft" HorizontalAlignment="Right" Padding="10,0" Grid.Row="2" Grid.Column="5" Text="TextBlock" TextWrapping="Wrap" VerticalAlignment="Bottom"/>
+        <Button
+  Style="{StaticResource MaterialDesignIconButton}"
+            HorizontalAlignment="Stretch" Margin="10,5,10,5" Grid.Row="3" Grid.Column="1" VerticalAlignment="Stretch" Click="Button_Click_1"
+  ToolTip="MaterialDesignIconButton"
+  IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}">
+            <materialDesign:PackIcon
+    Kind="Play" />
+        </Button>
+        <Button
+  Style="{StaticResource MaterialDesignIconButton}"
+            x:Name="previous" HorizontalAlignment="Stretch" Margin="10,5,10,5" Grid.Row="3" VerticalAlignment="Stretch" Click="previous_Click"
+  ToolTip="MaterialDesignIconButton"
+  IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}">
+            <materialDesign:PackIcon
+    Kind="PreviousTitle" />
+        </Button>
+        <Button
+  Style="{StaticResource MaterialDesignIconButton}"
+            x:Name="next" HorizontalAlignment="Stretch" Margin="10,5,10,5" Grid.Row="3" Grid.Column="2" VerticalAlignment="Stretch" Click="next_Click"
+  ToolTip="MaterialDesignIconButton"
+  IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}">
+            <materialDesign:PackIcon
+    Kind="NextTitle" />
+        </Button>
+        <Button
+  Style="{StaticResource MaterialDesignIconButton}"
+            x:Name="repeat" HorizontalAlignment="Stretch" Margin="10,5,10,5" Grid.Row="3" Grid.Column="3" VerticalAlignment="Stretch" Click="repeat_Click"
+  ToolTip="MaterialDesignIconButton"
+  IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}">
+            <materialDesign:PackIcon
+    Kind="Repeat" />
+        </Button>
+        <Button
+  Style="{StaticResource MaterialDesignIconButton}"
+            x:Name="shuffle" HorizontalAlignment="Stretch" Margin="10,5,10,5" Grid.Row="3" Grid.Column="4" VerticalAlignment="Stretch" Click="shuffle_Click"
+  ToolTip="MaterialDesignIconButton"
+  IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}">
+            <materialDesign:PackIcon
+    Kind="Shuffle" />
+        </Button>
     </Grid>
 </Window>
